@@ -1,4 +1,4 @@
-package ru.mail.hw1.Fragment;
+package ru.mail.hw1.fragment;
 
 import android.os.Bundle;
 import android.util.Log;

@@ -1,18 +1,17 @@
-package ru.mail.hw1.Fragment.RecyclerViewFragment;
+package ru.mail.hw1.fragment.recycler_view_fragment;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import ru.mail.hw1.Fragment.SecondFragment;
+import ru.mail.hw1.fragment.SecondFragment;
 import ru.mail.hw1.R;
 
 

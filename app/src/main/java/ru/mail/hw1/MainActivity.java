@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.mail.hw1.Fragment.RecyclerViewFragment.RecyclerViewFragment;
+import ru.mail.hw1.fragment.recycler_view_fragment.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity {
 

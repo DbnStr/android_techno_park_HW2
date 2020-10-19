@@ -1,5 +1,6 @@
-package ru.mail.hw1.Fragment.RecyclerViewFragment;
+package ru.mail.hw1.fragment.recycler_view_fragment;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mail.hw1.R;
+import ru.mail.hw1.fragment.SecondFragment;
 
 public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
-    private Integer count;
+    static private Integer count;
 
     @Nullable
     @Override
@@ -84,5 +86,11 @@ public class RecyclerViewFragment extends Fragment {
 
     public boolean checkOrientation() {
         return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.d("RecyclerViewFragment", "onAttach");
     }
 }

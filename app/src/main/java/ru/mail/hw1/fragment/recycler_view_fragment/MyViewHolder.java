@@ -1,4 +1,4 @@
-package ru.mail.hw1.Fragment.RecyclerViewFragment;
+package ru.mail.hw1.fragment.recycler_view_fragment;
 
 import android.view.View;
 import android.widget.TextView;
