@@ -20,17 +20,21 @@ import ru.mail.hw1.R;
 public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
+    private Integer count;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("RecyclerViewFragment", "onCreateView");
+        Log.d("RecyclerViewFragment", String.valueOf(savedInstanceState == null));
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         final RecyclerView recyclerView = view.findViewById(R.id.recycler);
         int spanCount = checkOrientation() ? 3 : 4;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
 
-        int count = savedInstanceState == null ? 100 : savedInstanceState.getInt("count");
+        if (count == null) {
+            count = savedInstanceState == null ? 100 : savedInstanceState.getInt("count");
+        }
         adapter = new MyAdapter(count, getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
 
@@ -47,9 +51,8 @@ public class RecyclerViewFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt("count", adapter.getItemCount());
-        super.onSaveInstanceState(outState);
-        Log.d("RecyclerViewFragment", String.valueOf(outState == null));
+        outState.putInt("count", count);
+        Log.d("RecyclerViewFragment", "onSaveInstanceState");
     }
 
     @Override
@@ -67,7 +70,7 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        onSaveInstanceState(new Bundle());
+        count = adapter.getItemCount();
         Log.d("RecyclerViewFragment", "onPause");
     }
 
