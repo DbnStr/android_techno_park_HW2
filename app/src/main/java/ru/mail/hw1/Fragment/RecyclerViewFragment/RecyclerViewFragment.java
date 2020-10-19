@@ -11,7 +11,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +26,7 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("RecyclerViewFragment", "onCreateView");
         Log.d("RecyclerViewFragment", String.valueOf(savedInstanceState == null));
+
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         final RecyclerView recyclerView = view.findViewById(R.id.recycler);
         int spanCount = checkOrientation() ? 3 : 4;

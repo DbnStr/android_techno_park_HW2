@@ -1,6 +1,5 @@
 package ru.mail.hw1.Fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import ru.mail.hw1.Fragment.RecyclerViewFragment.RecyclerViewFragment;
 import ru.mail.hw1.R;
 
 public class SecondFragment extends Fragment {

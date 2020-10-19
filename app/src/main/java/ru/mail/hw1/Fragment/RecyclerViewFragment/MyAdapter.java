@@ -43,11 +43,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Log.d("MyAdapter", "onBindViewHolder with position: " + position);
         int id = mData.get(position);
-        holder.number.setText(String.valueOf(id+1));
+        holder.number.setText(String.valueOf(id + 1));
 
         final int color = id % 2 == 0 ? Color.RED : Color.BLUE;
         holder.number.setTextColor(color);
-
         holder.number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 bundle.putInt("color", color);
                 SecondFragment fr = new SecondFragment();
                 fr.setArguments(bundle);
-
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.container, fr)

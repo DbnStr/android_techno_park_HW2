@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ru.mail.hw1.Fragment.RecyclerViewFragment.RecyclerViewFragment;
-import ru.mail.hw1.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,13 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.container, new RecyclerViewFragment(), "MAIN FRAGMENT")
-                    .addToBackStack(null)
-                    .commitAllowingStateLoss();
-        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, new RecyclerViewFragment(), "MAIN FRAGMENT")
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
         Log.d(getLogTag(), "onCreate");
     }
 
