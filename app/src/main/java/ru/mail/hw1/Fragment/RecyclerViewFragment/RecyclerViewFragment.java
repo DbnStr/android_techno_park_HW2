@@ -51,7 +51,9 @@ public class RecyclerViewFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt("count", count);
+        if (count != null) {
+            outState.putInt("count", count);
+        }
         Log.d("RecyclerViewFragment", "onSaveInstanceState");
     }
 

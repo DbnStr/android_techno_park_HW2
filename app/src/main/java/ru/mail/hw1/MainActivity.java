@@ -15,11 +15,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, new RecyclerViewFragment(), "MAIN FRAGMENT")
-                .addToBackStack(null)
-                .commitAllowingStateLoss();
+        if (getSupportFragmentManager().findFragmentById(R.id.container) == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, new RecyclerViewFragment(), "MAIN FRAGMENT")
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+        }
         Log.d(getLogTag(), "onCreate");
     }
 

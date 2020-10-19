@@ -34,14 +34,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("MyAdapter", "onCreateViewHolder");
+//        Log.d("MyAdapter", "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        Log.d("MyAdapter", "onBindViewHolder with position: " + position);
+//        Log.d("MyAdapter", "onBindViewHolder with position: " + position);
         int id = mData.get(position);
         holder.number.setText(String.valueOf(id + 1));
 
