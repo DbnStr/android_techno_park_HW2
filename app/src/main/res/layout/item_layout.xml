@@ -12,7 +12,6 @@
         android:minWidth="50dp"
         android:minHeight="50dp"
         android:textSize="40sp"
-        android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"/>
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package ru.mail.hw1.Fragment.RecyclerViewFragment;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.container, fr)
-                        .addToBackStack("second fragment")
+                        .addToBackStack(null)
                         .commitAllowingStateLoss();
             }
         });

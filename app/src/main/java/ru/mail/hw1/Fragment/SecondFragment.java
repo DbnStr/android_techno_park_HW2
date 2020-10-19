@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import ru.mail.hw1.Fragment.RecyclerViewFragment.RecyclerViewFragment;
 import ru.mail.hw1.R;
 
 public class SecondFragment extends Fragment {
@@ -37,7 +38,10 @@ public class SecondFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("BACK", "on click BACK");
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.popBackStack();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, fragmentManager.findFragmentByTag("MAIN FRAGMENT"))
+                        .commitAllowingStateLoss();
             }
         });
 

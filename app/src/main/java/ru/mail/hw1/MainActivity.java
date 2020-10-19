@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new RecyclerViewFragment())
-                    .addToBackStack("main fragment")
+                    .add(R.id.container, new RecyclerViewFragment(), "MAIN FRAGMENT")
+                    .addToBackStack(null)
                     .commitAllowingStateLoss();
         }
         Log.d(getLogTag(), "onCreate");
