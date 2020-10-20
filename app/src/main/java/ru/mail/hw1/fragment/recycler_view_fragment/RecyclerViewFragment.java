@@ -16,27 +16,33 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mail.hw1.R;
-import ru.mail.hw1.fragment.SecondFragment;
 
 public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
-    static private Integer count;
+    private Integer count;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            count = savedInstanceState.getInt("count");
+        }
+        else {
+            count = 100;
+        }
+        log("onCreate");
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d("RecyclerViewFragment", "onCreateView");
-        Log.d("RecyclerViewFragment", String.valueOf(savedInstanceState == null));
-
+        log("onCreateView");
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         final RecyclerView recyclerView = view.findViewById(R.id.recycler);
         int spanCount = checkOrientation() ? 3 : 4;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
 
-        if (count == null) {
-            count = savedInstanceState == null ? 100 : savedInstanceState.getInt("count");
-        }
         adapter = new MyAdapter(count, getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
 
@@ -45,10 +51,19 @@ public class RecyclerViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 adapter.addItem();
+                ++count;
             }
         });
 
         return view;
+    }
+
+    public boolean checkOrientation() {
+        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    public void log(String message) {
+      Log.d("RecyclerViewFragment", message);
     }
 
     @Override
@@ -56,41 +71,37 @@ public class RecyclerViewFragment extends Fragment {
         if (count != null) {
             outState.putInt("count", count);
         }
-        Log.d("RecyclerViewFragment", "onSaveInstanceState");
+        log("onSaveInstanceState");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("RecyclerViewFragment", "destroy");
+        log("destroy");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.d("RecyclerViewFragment", "onDetach");
+        log("onDetach");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        count = adapter.getItemCount();
-        Log.d("RecyclerViewFragment", "onPause");
+        log("onPause");
+        onSaveInstanceState(new Bundle());
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("RecyclerViewFragment", "onDestroyView");
-    }
-
-    public boolean checkOrientation() {
-        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+       log("onDestroyView");
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Log.d("RecyclerViewFragment", "onAttach");
+        log("onAttach");
     }
 }

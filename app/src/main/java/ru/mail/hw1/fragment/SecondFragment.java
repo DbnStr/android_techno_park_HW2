@@ -17,36 +17,41 @@ import ru.mail.hw1.R;
 
 public class SecondFragment extends Fragment {
 
-    private TextView number;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.second_fragment, container, false);
-        number = view.findViewById(R.id.bigNumberView);
+        TextView number = view.findViewById(R.id.bigNumberView);
         Bundle bundle = getArguments();
-        number.setText(String.valueOf(bundle.getInt("text")));
-        number.setTextColor(bundle.getInt("color"));
+        if (bundle != null) {
+            number.setText(String.valueOf(bundle.getInt(getString(R.string.bundle_text))));
+            number.setTextColor(bundle.getInt(getString(R.string.bundle_color)));
+        }
+        else log("BUNDLE IS EMPTY");
 
         Button button = view.findViewById(R.id.backButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("BACK", "on click BACK");
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.container, fragmentManager.findFragmentByTag("MAIN FRAGMENT"))
-                        .commitAllowingStateLoss();
+                log("on click BACK");
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.container, fragmentManager.findFragmentByTag("MAIN FRAGMENT"))
+                            .commitAllowingStateLoss();
             }
         });
 
         return view;
     }
 
+    public void log(String message) {
+        Log.d("RecyclerSecondFragment", message);
+    }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("RecyclerSecondFragment", "OnSaveInstanceState");
+        log("OnSaveInstanceState");
     }
 }
