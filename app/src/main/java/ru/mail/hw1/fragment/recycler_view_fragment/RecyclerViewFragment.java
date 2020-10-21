@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.mail.hw1.ClickHandler;
 import ru.mail.hw1.R;
 
 public class RecyclerViewFragment extends Fragment {

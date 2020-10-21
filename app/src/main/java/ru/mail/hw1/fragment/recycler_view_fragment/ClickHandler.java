@@ -1,4 +1,4 @@
-package ru.mail.hw1;
+package ru.mail.hw1.fragment.recycler_view_fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,12 +6,14 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
+import ru.mail.hw1.R;
 import ru.mail.hw1.fragment.SecondFragment;
 
 public class ClickHandler {
     static private FragmentManager fragmentManager;
-    public ClickHandler(@NonNull FragmentManager fragmentManager) {
-        this.fragmentManager = fragmentManager;
+
+    public ClickHandler(@NonNull FragmentManager fr) {
+        fragmentManager = fr;
     }
 
     static public View.OnClickListener onClick(final int id,final int color) {

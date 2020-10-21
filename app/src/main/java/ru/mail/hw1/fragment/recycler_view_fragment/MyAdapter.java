@@ -1,18 +1,14 @@
 package ru.mail.hw1.fragment.recycler_view_fragment;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import ru.mail.hw1.ClickHandler;
-import ru.mail.hw1.fragment.SecondFragment;
 import ru.mail.hw1.R;
 
 
@@ -32,14 +28,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        Log.d("MyAdapter", "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-//        Log.d("MyAdapter", "onBindViewHolder with position: " + position);
         int id = mData.get(position);
         holder.number.setText(String.valueOf(id + 1));
 
