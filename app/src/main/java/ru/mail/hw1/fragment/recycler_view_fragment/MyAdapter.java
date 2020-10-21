@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import ru.mail.hw1.ClickHandler;
 import ru.mail.hw1.fragment.SecondFragment;
 import ru.mail.hw1.R;
 
@@ -18,11 +19,9 @@ import ru.mail.hw1.R;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private ArrayList<Integer> mData;
-    private FragmentManager fragmentManager;
 
-    public MyAdapter(int count, FragmentManager fragmentManager) {
+    public MyAdapter(int count) {
         mData = new ArrayList<>();
-        this.fragmentManager = fragmentManager;
 
         for(int i = 0; i < count; i++) {
             mData.add(i);
@@ -46,21 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         final int color = id % 2 == 0 ? Color.RED : Color.BLUE;
         holder.number.setTextColor(color);
-        holder.number.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("text", position + 1);
-                bundle.putInt("color", color);
-                SecondFragment fr = new SecondFragment();
-                fr.setArguments(bundle);
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.container, fr)
-                        .addToBackStack(null)
-                        .commitAllowingStateLoss();
-            }
-        });
+        holder.number.setOnClickListener(ClickHandler.onClick(id + 1, color));
     }
 
     @Override

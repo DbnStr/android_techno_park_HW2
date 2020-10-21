@@ -15,12 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import ru.mail.hw1.ClickHandler;
 import ru.mail.hw1.R;
 
 public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
     private Integer count;
+    ClickHandler clickHandler;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class RecyclerViewFragment extends Fragment {
         else {
             count = 100;
         }
+        clickHandler = new ClickHandler(getActivity().getSupportFragmentManager());
         log("onCreate");
     }
 
@@ -43,7 +46,7 @@ public class RecyclerViewFragment extends Fragment {
         int spanCount = checkOrientation() ? 3 : 4;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
 
-        adapter = new MyAdapter(count, getActivity().getSupportFragmentManager());
+        adapter = new MyAdapter(count);
         recyclerView.setAdapter(adapter);
 
         Button button = view.findViewById(R.id.addButton);

@@ -17,6 +17,9 @@ import ru.mail.hw1.R;
 
 public class SecondFragment extends Fragment {
 
+    final static String bundle_text = "text";
+    final static String bundle_color = "color";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,8 +27,8 @@ public class SecondFragment extends Fragment {
         TextView number = view.findViewById(R.id.bigNumberView);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            number.setText(String.valueOf(bundle.getInt(getString(R.string.bundle_text))));
-            number.setTextColor(bundle.getInt(getString(R.string.bundle_color)));
+            number.setText(String.valueOf(bundle.getInt(bundle_text)));
+            number.setTextColor(bundle.getInt(bundle_color));
         }
         else log("BUNDLE IS EMPTY");
 
