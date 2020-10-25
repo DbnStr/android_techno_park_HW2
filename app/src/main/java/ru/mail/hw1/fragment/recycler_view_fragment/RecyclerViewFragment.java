@@ -12,27 +12,43 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mail.hw1.R;
+import ru.mail.hw1.fragment.SecondFragment;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements NumberClickListener {
 
     private MyAdapter adapter;
     private Integer count;
-    ClickHandler clickHandler;
+
+    @Override
+    public void onNumberClicked(int number, int color) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("text", number);
+        bundle.putInt("color", color);
+        SecondFragment fr = new SecondFragment();
+        fr.setArguments(bundle);
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container, fr)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             count = savedInstanceState.getInt("count");
-        }
-        else {
+        } else {
             count = 100;
         }
-        clickHandler = new ClickHandler(getActivity().getSupportFragmentManager());
         log("onCreate");
     }
 
@@ -46,6 +62,7 @@ public class RecyclerViewFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
 
         adapter = new MyAdapter(count);
+        adapter.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
 
         Button button = view.findViewById(R.id.addButton);
@@ -65,7 +82,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void log(String message) {
-      Log.d("RecyclerViewFragment", message);
+        Log.d("RecyclerViewFragment", message);
     }
 
     @Override
@@ -98,7 +115,8 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-       log("onDestroyView");
+        adapter.clearClickListener();
+        log("onDestroyView");
     }
 
     @Override

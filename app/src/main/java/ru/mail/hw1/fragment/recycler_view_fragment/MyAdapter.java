@@ -15,15 +15,15 @@ import ru.mail.hw1.R;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private ArrayList<Integer> mData;
+    private NumberClickListener listener;
 
     public MyAdapter(int count) {
         mData = new ArrayList<>();
 
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             mData.add(i);
         }
     }
-
 
     @NonNull
     @Override
@@ -34,12 +34,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        int id = mData.get(position);
+        final int id = mData.get(position);
         holder.number.setText(String.valueOf(id + 1));
 
         final int color = id % 2 == 0 ? Color.RED : Color.BLUE;
         holder.number.setTextColor(color);
-        holder.number.setOnClickListener(ClickHandler.onClick(id + 1, color));
+        holder.number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onNumberClicked(id + 1, color);
+                }
+            }
+        });
     }
 
     @Override
@@ -55,5 +62,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void addItem() {
         mData.add(mData.size());
         this.notifyItemInserted(mData.size() - 1);
+    }
+
+    void setOnClickListener(NumberClickListener listener) {
+        this.listener = listener;
+    }
+
+    void clearClickListener() {
+        this.listener = null;
     }
 }

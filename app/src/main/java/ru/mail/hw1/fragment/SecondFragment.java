@@ -29,19 +29,18 @@ public class SecondFragment extends Fragment {
         if (bundle != null) {
             number.setText(String.valueOf(bundle.getInt(bundle_text)));
             number.setTextColor(bundle.getInt(bundle_color));
-        }
-        else log("BUNDLE IS EMPTY");
+        } else log("BUNDLE IS EMPTY");
 
         Button button = view.findViewById(R.id.backButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 log("on click BACK");
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentManager
-                            .beginTransaction()
-                            .replace(R.id.container, fragmentManager.findFragmentByTag("MAIN FRAGMENT"))
-                            .commitAllowingStateLoss();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, fragmentManager.findFragmentByTag("MAIN FRAGMENT"))
+                        .commitAllowingStateLoss();
             }
         });
 
